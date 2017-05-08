@@ -16,11 +16,11 @@
     <tr>
         <td></td>
         <td><label for="discount-percent">Discount:</label></td>
-        <td><input id="discount-percent" type="text" size="2" value="20" onchange="calculateRates();" />%</td>
+        <td><input id="discount-percent" type="text" size="2" value="20" onchange="update();" />%</td>
     </tr>
     <tr>
         <td><label for="base-rate">Base rate:</label></td>
-        <td>$<input id="base-rate" type="text" size="5" value="100" onchange="calculateRates();" /></td>
+        <td>$<input id="base-rate" type="text" size="5" value="100" onchange="update();" /></td>
         <td>$<span id="discounted-base">----</span></td>
     </tr>
     <tr>
@@ -35,19 +35,19 @@
     <tr><th colspan="2">Quantity</th></tr>
     <tr>
         <td><label for="headcount-base">Base rate:</label></td>
-        <td><input id="headcount-base" type="text" size="3" value="4" onchange="updateQuantity();" /></td>
+        <td><input id="headcount-base" type="text" size="3" value="4" onchange="update();" /></td>
     </tr>
     <tr>
         <td><label for="headcount-discounted-base">Discounted base rate:</label></td>
-        <td><input id="headcount-discounted-base" type="text" size="3" value="3" onchange="updateQuantity();" /></td>
+        <td><input id="headcount-discounted-base" type="text" size="3" value="3" onchange="update();" /></td>
     </tr>
     <tr>
         <td><label for="headcount-half-again">Extra rate:</label></td>
-        <td><input id="headcount-half-again" type="text" size="3" value="2" onchange="updateQuantity();" /></td>
+        <td><input id="headcount-half-again" type="text" size="3" value="2" onchange="update();" /></td>
     </tr>
     <tr>
         <td><label for="headcount-discounted-half-again">Discounted base rate:</label></td>
-        <td><input id="headcount-discounted-half-again" type="text" size="3" value="1" onchange="updateQuantity();" /></td>
+        <td><input id="headcount-discounted-half-again" type="text" size="3" value="1" onchange="update();" /></td>
     </tr>
     </table>
 </div>
@@ -58,6 +58,7 @@
         <td>$<span id="total-revenue">----</span></td>
     </tr>
     </table>
+    <input id="calculate-button" type="button" value="Calculate" onclick="update();" class="btn btn-primary" />
 </div>
 </div>
 

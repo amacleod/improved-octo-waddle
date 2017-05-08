@@ -7,6 +7,11 @@ var RATES = {
     discountedHalfAgain: 0
 }
 
+function update() {
+    calculateRates();
+    calculateRevenue();
+}
+
 function calculateRates() {
     RATES.base = $("#base-rate").val();
     var discount = $("#discount-percent").val() * 0.01;
@@ -31,7 +36,7 @@ function populateDiscountedHalfAgainRate(rate) {
     $("#discounted-half-again").text(rate);
 }
 
-function updateQuantity() {
+function calculateRevenue() {
     var quantityBase = $("#headcount-base").val();
     var quantityDiscountedBase = $("#headcount-discounted-base").val();
     var quantityHalfAgain = $("#headcount-half-again").val();
@@ -49,5 +54,4 @@ function populateTotalRevenue(amount) {
 }
 
 // Do it once at startup.
-calculateRates();
-updateQuantity();
+update();
