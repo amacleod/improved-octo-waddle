@@ -1,17 +1,22 @@
 "use strict";
 
+var RATES = {
+    base: 0,
+    discountedBase: 0,
+    halfAgain: 0,
+    discountedHalfAgain: 0
+}
+
 function calculateRates() {
-    console.log("calculating rates");
-    var baseRate = $("#base-rate").val();
+    RATES.base = $("#base-rate").val();
     var discount = $("#discount-percent").val() * 0.01;
-    console.log("base rate: " + baseRate + ", discount: " + discount + "%");
     var discountFactor = 1.0 - discount;
-    var discountedBase = baseRate * discountFactor;
-    var halfAgain = baseRate * 1.5;
-    var discountedHalfAgain = halfAgain * discountFactor;
-    populateDiscountedBaseRate(discountedBase);
-    populateHalfAgainRate(halfAgain);
-    populateDiscountedHalfAgainRate(discountedHalfAgain);
+    RATES.discountedBase = RATES.base * discountFactor;
+    RATES.halfAgain = RATES.base * 1.5;
+    RATES.discountedHalfAgain = RATES.halfAgain * discountFactor;
+    populateDiscountedBaseRate(RATES.discountedBase);
+    populateHalfAgainRate(RATES.halfAgain);
+    populateDiscountedHalfAgainRate(RATES.discountedHalfAgain);
 }
 
 function populateDiscountedBaseRate(rate) {
@@ -26,5 +31,23 @@ function populateDiscountedHalfAgainRate(rate) {
     $("#discounted-half-again").text(rate);
 }
 
+function updateQuantity() {
+    var quantityBase = $("#headcount-base").val();
+    var quantityDiscountedBase = $("#headcount-discounted-base").val();
+    var quantityHalfAgain = $("#headcount-half-again").val();
+    var quantityDiscountedHalfAgain = $("#headcount-discounted-half-again").val();
+    var revBase = quantityBase * RATES.base;
+    var revDiscBase = quantityDiscountedBase * RATES.discountedBase;
+    var revHalfAgain = quantityHalfAgain * RATES.halfAgain;
+    var revDiscHalfAgain = quantityDiscountedHalfAgain * RATES.discountedHalfAgain;
+    var revenue = revBase + revDiscBase + revHalfAgain + revDiscHalfAgain;
+    populateTotalRevenue(revenue);
+}
+
+function populateTotalRevenue(amount) {
+    $("#total-revenue").text(amount);
+}
+
 // Do it once at startup.
 calculateRates();
+updateQuantity();

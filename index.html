@@ -30,6 +30,35 @@
     </tr>
     </table>
 </div>
+<div id="headcount-column" class="col-md-4">
+    <table>
+    <tr><th colspan="2">Quantity</th></tr>
+    <tr>
+        <td><label for="headcount-base">Base rate:</label></td>
+        <td><input id="headcount-base" type="text" size="3" value="4" onchange="updateQuantity();" /></td>
+    </tr>
+    <tr>
+        <td><label for="headcount-discounted-base">Discounted base rate:</label></td>
+        <td><input id="headcount-discounted-base" type="text" size="3" value="3" onchange="updateQuantity();" /></td>
+    </tr>
+    <tr>
+        <td><label for="headcount-half-again">Extra rate:</label></td>
+        <td><input id="headcount-half-again" type="text" size="3" value="2" onchange="updateQuantity();" /></td>
+    </tr>
+    <tr>
+        <td><label for="headcount-discounted-half-again">Discounted base rate:</label></td>
+        <td><input id="headcount-discounted-half-again" type="text" size="3" value="1" onchange="updateQuantity();" /></td>
+    </tr>
+    </table>
+</div>
+<div id="revenue-column" class="col-md-4">
+    <table>
+    <tr>
+        <th scope="row">Revenue:</th>
+        <td>$<span id="total-revenue">----</span></td>
+    </tr>
+    </table>
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.js"
