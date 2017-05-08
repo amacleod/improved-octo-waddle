@@ -25,3 +25,6 @@ function populateHalfAgainRate(rate) {
 function populateDiscountedHalfAgainRate(rate) {
     $("#discounted-half-again").text(rate);
 }
+
+// Do it once at startup.
+calculateRates();
