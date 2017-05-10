@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Emmett's Octo-waddle</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+ integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+
+<body>
+<h1>Emmett's Octo-Waddle</h1>
+
+<div class="container">
+<div id="fees" class="col-md-6">
+<h2>Fees (per session)</h2>
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>2-day</td>
+        <td>3-day</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Regular</td>
+        <td>$<input id="base-rate" type="text" size="4" value="800" onchange="update();" /></td>
+        <td>$<span id="fee-threeday">----</span></td>
+    </tr>
+    <tr>
+        <td><input id="percent-discount" type="text" size="4" value="20" onchange="update();" />%</td>
+        <td>Discount</td>
+        <td>$<span id="fee-discount-twoday">----</span></td>
+        <td>$<span id="fee-discount-threeday">----</span></td>
+    </tr>
+</table>
+<h2>Student Enrollment</h2>
+<table>
+    <tr>
+        <td></td>
+        <td>2-day</td>
+        <td>3-day</td>
+    </tr>
+    <tr>
+        <td>Regular</td>
+        <td><input id="headcount-twoday" type="text" size="4" value="2" onchange="update();" /></td>
+        <td><input id="headcount-threeday" type="text" size="4" value="2" onchange="update();" /></td>
+    </tr>
+    <tr>
+        <td>Discount</td>
+        <td><input id="headcount-discount-twoday" type="text" size="4" value="2" onchange="update();" /></td>
+        <td><input id="headcount-discount-threeday" type="text" size="4" value="2" onchange="update();" /></td>
+    </tr>
+</table>
+<h3>Total Fees: $<span id="total-fees">----</span></h3>
+</div>
+
+<div id="rent" class="col-md-6">
+<h2>Rent</h2>
+<p>daily rent: $<input id="daily-rent" type="text" size="4" value="50" onchange="update();" /></p>
+<h3>Total Rent: $<span id="total-rent">----</span></h3>
+</div>
+
+<div id="asst-salary" class="col-md-6">
+<h2>Assistant's Salary</h2>
+<p>assistant's pay: $<input id="asst-hrly-pay" type="text" size="4" value="11" onchange="update();" />/hour</p>
+<p>assistant's hours: <input id="asst-daily-hrs" type="text" size="4" value="6" onchange="update();" />/class day</p>
+<h3>Assistant's Income: $<span id="asst-income">----</span></h3>
+</div>
+
+<div id="materials" class="col-md-6">
+<h2>Materials Costs</h2>
+<p>fixed materials cost: $<input id="materials-cost-fixed" type="text" size="4" value="0" onchange="update();" /></p>
+<p>per capita materials cost: $<input id="materials-cost-per" type="text" size="4" value="0" onchange="update();" /></p>
+<h3>Total Materials Cost: $<span id="materials-cost">----</span></h3>
+</div>
+
+<div id="anna-income" class="col-md-6">
+<br /><br /><br /><br /><br /><br />
+<h2>Anna's Income: $<span id="anna-income">----</span></h2>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"
+ integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="index.js"></script>
+</body>
+</html>
