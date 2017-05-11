@@ -1,89 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Emmett's Octo-waddle</title>
+<title>Improved Octo-waddle</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
  integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
-
 <body>
-<h1>Emmett's Octo-Waddle</h1>
+<h1>Improved Octo-Waddle</h1>
 
 <div class="container">
-<div id="defining-vars" class="col-md-6">
-<p>Weeks per session: <input id="weeks-session" type="text" size="4" value="10" onchange="update();" /></p>
-<p>Sessions to calculate: <input id="sessions" type="text" size="4" value="3" onchange="update();" /></p>
-</div>
-
-<div id="fees" class="col-md-6">
-<h2>Student Enrollment</h2>
-<table>
+<div id="rates-column" class="col-md-4">
+    <table>
     <tr>
         <td></td>
-        <td>2-day</td>
-        <td>3-day</td>
+        <td><label for="discount-percent">Discount:</label></td>
+        <td><input id="discount-percent" type="text" size="2" value="20" onchange="update();" />%</td>
     </tr>
     <tr>
-        <td>Regular</td>
-        <td><input id="headcount-twoday" type="text" size="4" value="2" onchange="update();" /></td>
-        <td><input id="headcount-threeday" type="text" size="4" value="2" onchange="update();" /></td>
+        <td><label for="base-rate">Base rate:</label></td>
+        <td>$<input id="base-rate" type="text" size="5" value="100" onchange="update();" /></td>
+        <td>$<span id="discounted-base">----</span></td>
     </tr>
     <tr>
-        <td>Discount</td>
-        <td><input id="headcount-discount-twoday" type="text" size="4" value="2" onchange="update();" /></td>
-        <td><input id="headcount-discount-threeday" type="text" size="4" value="2" onchange="update();" /></td>
+        <td><label for="half-again-rate">Extra rate:</label></td>
+        <td>$<span id="half-again-rate">----</span></td>
+        <td>$<span id="discounted-half-again">----</span></td>
     </tr>
-</table>
-<p>Total Students: <span id="total-students">----</span></p>
-<h2>Fees (per session)</h2>
-<table>
-    <tr>
-        <td></td>
-        <td></td>
-        <td>2-day</td>
-        <td>3-day</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>Regular</td>
-        <td>$<input id="base-rate" type="text" size="4" value="800" onchange="update();" /></td>
-        <td>$<span id="fee-threeday">----</span></td>
-    </tr>
-    <tr>
-        <td><input id="percent-discount" type="text" size="4" value="20" onchange="update();" />%</td>
-        <td>Discount</td>
-        <td>$<span id="fee-discount-twoday">----</span></td>
-        <td>$<span id="fee-discount-threeday">----</span></td>
-    </tr>
-</table>
-<h3>Total Fees: $<span id="total-fees">----</span></h3>
+    </table>
 </div>
-
-<div id="rent" class="col-md-6">
-<h2>Rent</h2>
-<p>daily rent: $<input id="daily-rent" type="text" size="4" value="50" onchange="update();" /></p>
-<h3>Total Rent: $<span id="total-rent">----</span></h3>
+<div id="headcount-column" class="col-md-4">
+    <table>
+    <tr><th colspan="2">Quantity</th></tr>
+    <tr>
+        <td><label for="headcount-base">Base rate:</label></td>
+        <td><input id="headcount-base" type="text" size="3" value="4" onchange="update();" /></td>
+    </tr>
+    <tr>
+        <td><label for="headcount-discounted-base">Discounted base rate:</label></td>
+        <td><input id="headcount-discounted-base" type="text" size="3" value="3" onchange="update();" /></td>
+    </tr>
+    <tr>
+        <td><label for="headcount-half-again">Extra rate:</label></td>
+        <td><input id="headcount-half-again" type="text" size="3" value="2" onchange="update();" /></td>
+    </tr>
+    <tr>
+        <td><label for="headcount-discounted-half-again">Discounted extra rate:</label></td>
+        <td><input id="headcount-discounted-half-again" type="text" size="3" value="1" onchange="update();" /></td>
+    </tr>
+    </table>
 </div>
-
-<div id="asst-salary" class="col-md-6">
-<h2>Assistant's Salary</h2>
-<p>assistant's pay: $<input id="asst-hrly-pay" type="text" size="4" value="11" onchange="update();" />/hour</p>
-<p>assistant's hours: <input id="asst-daily-hrs" type="text" size="4" value="6" onchange="update();" />/class day</p>
-<h3>Assistant's Income: $<span id="asst-income">----</span></h3>
-</div>
-
-<div id="materials" class="col-md-6">
-<h2>Materials Costs</h2>
-<p>fixed materials cost: $<input id="materials-cost-fixed" type="text" size="4" value="0" onchange="update();" /></p>
-<p>per capita materials cost: $<input id="materials-cost-per" type="text" size="4" value="0" onchange="update();" /></p>
-<h3>Total Materials Cost: $<span id="materials-cost">----</span></h3>
-</div>
-
-<div id="annas-income" class="col-md-6">
-<br /><br /><br /><br /><br /><br />
-<h2>Anna's Income: $<span id="anna-income">----</span></h2>
+<div id="revenue-column" class="col-md-4">
+    <table>
+    <tr>
+        <th scope="row">Revenue:</th>
+        <td>$<span id="total-revenue">----</span></td>
+    </tr>
+    </table>
+    <input id="calculate-button" type="button" value="Calculate" onclick="update();" class="btn btn-primary" />
 </div>
 </div>
 
