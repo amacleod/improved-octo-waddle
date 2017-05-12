@@ -12,7 +12,31 @@
 <h1>Emmett's Octo-Waddle</h1>
 
 <div class="container">
+<div id="defining-vars" class="col-md-6">
+<p>Weeks per session: <input id="weeks-session" type="text" size="4" value="10" onchange="update();" /></p>
+<p>Sessions to calculate: <input id="sessions" type="text" size="4" value="3" onchange="update();" /></p>
+</div>
+
 <div id="fees" class="col-md-6">
+<h2>Student Enrollment</h2>
+<table>
+    <tr>
+        <td></td>
+        <td>2-day</td>
+        <td>3-day</td>
+    </tr>
+    <tr>
+        <td>Regular</td>
+        <td><input id="headcount-twoday" type="text" size="4" value="2" onchange="update();" /></td>
+        <td><input id="headcount-threeday" type="text" size="4" value="2" onchange="update();" /></td>
+    </tr>
+    <tr>
+        <td>Discount</td>
+        <td><input id="headcount-discount-twoday" type="text" size="4" value="2" onchange="update();" /></td>
+        <td><input id="headcount-discount-threeday" type="text" size="4" value="2" onchange="update();" /></td>
+    </tr>
+</table>
+<p>Total Students: <span id="total-students">----</span></p>
 <h2>Fees (per session)</h2>
 <table>
     <tr>
@@ -32,24 +56,6 @@
         <td>Discount</td>
         <td>$<span id="fee-discount-twoday">----</span></td>
         <td>$<span id="fee-discount-threeday">----</span></td>
-    </tr>
-</table>
-<h2>Student Enrollment</h2>
-<table>
-    <tr>
-        <td></td>
-        <td>2-day</td>
-        <td>3-day</td>
-    </tr>
-    <tr>
-        <td>Regular</td>
-        <td><input id="headcount-twoday" type="text" size="4" value="2" onchange="update();" /></td>
-        <td><input id="headcount-threeday" type="text" size="4" value="2" onchange="update();" /></td>
-    </tr>
-    <tr>
-        <td>Discount</td>
-        <td><input id="headcount-discount-twoday" type="text" size="4" value="2" onchange="update();" /></td>
-        <td><input id="headcount-discount-threeday" type="text" size="4" value="2" onchange="update();" /></td>
     </tr>
 </table>
 <h3>Total Fees: $<span id="total-fees">----</span></h3>
@@ -75,7 +81,7 @@
 <h3>Total Materials Cost: $<span id="materials-cost">----</span></h3>
 </div>
 
-<div id="anna-income" class="col-md-6">
+<div id="annas-income" class="col-md-6">
 <br /><br /><br /><br /><br /><br />
 <h2>Anna's Income: $<span id="anna-income">----</span></h2>
 </div>
