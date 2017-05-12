@@ -2,22 +2,19 @@
 
 //See definitions of variables at the bottom of this file.
 
-var N, M, S, R, F, A;
-var r, d, w, s, h, a;
-
 var n = {
-    a: 2,
-    b: 2,
-    c: 2,
-    d: 2
+    1: 2,
+    2: 2,
+    3: 2,
+    4: 2
 }
 
 function populateStudentNos() {
-    n.a = $("#headcount-twoday").val();
-    n.b = $("#headcount-discount-twoday").val();
-    n.c = $("#headcount-threeday").val();
-    n.d = $("#headcount-discount-threeday").val();
-    N = parseInt(n.a) + parseInt(n.b) + parseInt(n.c) + parseInt(n.d);
+    n.1 = $("#headcount-discount-twoday").val();
+    n.2 = $("#headcount-twoday").val();
+    n.3 = $("#headcount-threeday").val();
+    n.4 = $("#headcount-discount-threeday").val();
+    N = n.1 + n.2 + n.3 + n.4;
     populateStudentTotal(N);
 }
 
@@ -36,7 +33,7 @@ function populateMaterials() {
 }
 
 function calculateMaterials() {
-    M = parseInt(m.f) + N * parseInt(m.n);
+    M = m.f + N * m.n;
     populateMaterialsCost(M);
 }
 
@@ -45,16 +42,16 @@ function populateMaterialsCost(cost) {
 }
 
 function populateOtherVars() {
-    r = $("#daily-rent").val();
-    d = (n.c + n.d > 0) ? 3 : 2;
-    w = $("#weeks-session").val();
-    s = $("#sessions").val();
-    h = $("#asst-daily-hrs").val();
-    a = $("#asst-hrly-pay").val();
+    var r = $("#daily-rent").val();
+    var d = (n.3 + n.4 > 0) ? 3 : 2;
+    var w = $("#weeks-session").val();
+    var s = $("#sessions").val();
+    var h = $("#asst-daily-hrs").val();
+    var a = $("#asst-hrly-pay").val();
 }
 
 function calculateAsstIncome() {
-    S = (N >= 8) ? a * h * d * w * s : 0;
+    var S = (N >= 8) ? a * h * d * w * s : 0;
     populateAsstIncome(S);
 }
 
@@ -63,7 +60,7 @@ function populateAsstIncome(income) {
 }
 
 function calculateRent() {
-    R = r * d * w * s;
+    var R = r * d * w * s;
     populateRent(R);
 }
 
@@ -72,22 +69,22 @@ function populateRent(rent) {
 }
 
 var f = {
-    a: 800,
-    b: 0,
-    c: 0,
-    d: 0
+    1: 0,
+    2: 800,
+    3: 0,
+    4: 0
 }
 
 function calculateFees() {
-    f.a = $("#base-rate").val();
+    f.2 = $("#base-rate").val();
     var c = $("#percent-discount").val() * 0.01;
-    f.b = f.a * (1 - c);
-    f.c = 1.5 * f.a;
-    f.d = 1.5 * f.a * (1 - c);
-    F = (f.a * n.a + f.b * n.b + f.c * n.c + f.d * n.d) * parseInt(s);
-    populateTwodayDiscount(f.b);
-    populateThreedayReg(f.c);
-    populateThreedayDiscount(f.d);
+    f.1 = f.2 * (1 - c);
+    f.3 = 1.5 * f.2;
+    f.4 = 1.5 * f.2 * (1 - c);
+    var F = (f.1 * n.1 + f.2 * n.2 + f.3 * n.3 + f.4 * n.4) * s;
+    populateTwodayDiscount(f.1);
+    populateThreedayReg(f.3);
+    populateThreedayDiscount(f.4);
     populateFeeTotal(F);
 }
 
@@ -108,23 +105,12 @@ function populateFeeTotal(fee) {
 }
 
 function calculateAnnaIncome() {
-    A = F - (S + R + M);
+    var A = F - (S + R + M);
     populateAnnaIncome(A);
 }
 
 function populateAnnaIncome(income) {
     $("#anna-income").text(income);
-}
-
-function update() {
-    populateStudentNos();
-    populateMaterials();
-    calculateMaterials();
-    populateOtherVars();
-    calculateAsstIncome();
-    calculateRent();
-    calculateFees();
-    calculateAnnaIncome();
 }
 
 // Do it once at startup.
@@ -144,16 +130,16 @@ F = total fees collected from students
 m.f = fixed materials cost
 m.n = per capita materials cost
 
-n.a = headcount of full-rate two-day students
-n.b = headcount of discount two-day students
-n.c = headcount of full-rate three-day students
-n.d = headcount of discount three-day students
+n.1 = headcount of discount two-day students
+n.2 = headcount of full-rate two-day students
+n.3 = headcount of full-rate three-day students
+n.4 = headcount of discount three-day students
 N = total student headcount
 
-f.a = fee for full-rate two-day students = base fee
-f.b = fee for discounted two-day students
-f.c = fee for full-rate three-day students
-f.d = fee for discount three-day students
+f.1 = fee for discounted two-day students
+f.2 = fee for full-rate two-day students = base fee
+f.3 = fee for full-rate three-day students
+f.4 = fee for discount three-day students
 
 r = daily rent
 d = number of class days per week
