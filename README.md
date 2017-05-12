@@ -9,3 +9,6 @@ TODO / Wishlist
 ---------------
 
 * Slider inputs for headcount portions.
+* Try different Javascript frameworks:
+  * AngularJS
+  * React
