@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Emmett's Octo-waddle</title>
+<title>Emmett's Octo-Waddle</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
  integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
 <body>
-<h1>Emmett's Octo-Waddle</h1>
 
 <div class="container">
+<div class="page-header">
+    <h1>Emmett's Octo-Waddle <small>with some flourishes by Alec</small></h1>
+</div>
+
+<div class="row" id="data-body">
+
 <div id="defining-vars" class="col-md-6">
 <p>Weeks per session: <input id="weeks-session" type="text" size="4" value="10" onchange="update();" /></p>
 <p>Sessions to calculate: <input id="sessions" type="text" size="4" value="3" onchange="update();" /></p>
@@ -37,6 +43,12 @@
     </tr>
 </table>
 <p>Total Students: <span id="total-students">----</span></p>
+<div id="student-count-indicator" class="progress">
+    <div id="count-bar-twoday" class="progress-bar progress-bar-primary" style="width: 100%">2-day</div>
+    <div id="count-bar-threeday" class="progress-bar progress-bar-success" style="width: 0%">3-day</div>
+    <div id="count-bar-discount-twoday" class="progress-bar progress-bar-warning" style="width: 0%">2-d disc</div>
+    <div id="count-bar-discount-threeday" class="progress-bar progress-bar-danger" style="width: 0%">3-d disc</div>
+</div>
 <h2>Fees (per session)</h2>
 <table>
     <tr>
@@ -84,6 +96,7 @@
 <div id="annas-income" class="col-md-6">
 <br /><br /><br /><br /><br /><br />
 <h2>Anna's Income: $<span id="anna-income">----</span></h2>
+</div>
 </div>
 </div>
 
