@@ -10,5 +10,8 @@ TODO / Wishlist
 
 * Slider inputs for headcount portions.
 * Try different Javascript frameworks:
-  * AngularJS
-  * React
+  * [AngularJS][angular]
+  * [React][react]
+
+[angular]: https://angular.io/
+[react]: https://facebook.github.io/react/
