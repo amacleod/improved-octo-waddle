@@ -1,6 +1,6 @@
 "use strict";
 
-//See definitions of variables at the bottom of this file.
+//See descriptions of variables at the bottom of this file.
 
 var N, M, S, R, F, A;
 var r, d, w, s, h, a;
@@ -19,18 +19,6 @@ function populateStudentNos() {
     n.d = $("#headcount-discount-threeday").val();
     N = parseInt(n.a) + parseInt(n.b) + parseInt(n.c) + parseInt(n.d);
     populateStudentTotal(N);
-    adjustStudentBar(N, n.a, n.b, n.c, n.d);
-}
-
-function adjustStudentBar(total, a, b, c, d) {
-    var percent_a = a / total * 100;
-    var percent_b = b / total * 100;
-    var percent_c = c / total * 100;
-    var percent_d = d / total * 100;
-    $("#count-bar-twoday").css("width", percent_a + "%");
-    $("#count-bar-threeday").css("width", percent_b + "%");
-    $("#count-bar-discount-twoday").css("width", percent_c + "%");
-    $("#count-bar-discount-threeday").css("width", percent_d + "%");
 }
 
 function populateStudentTotal(number) {
@@ -49,6 +37,7 @@ function populateMaterials() {
 
 function calculateMaterials() {
     M = parseInt(m.f) + N * parseInt(m.n);
+    M = M.toFixed(2);
     populateMaterialsCost(M);
 }
 
@@ -59,14 +48,20 @@ function populateMaterialsCost(cost) {
 function populateOtherVars() {
     r = $("#daily-rent").val();
     d = (n.c + n.d > 0) ? 3 : 2;
+    populateClassDays(d);
     w = $("#weeks-session").val();
     s = $("#sessions").val();
     h = $("#asst-daily-hrs").val();
     a = $("#asst-hrly-pay").val();
 }
 
+function populateClassDays(days) {
+    $("#class-days").text(days);
+}
+
 function calculateAsstIncome() {
     S = (N >= 8) ? a * h * d * w * s : 0;
+    S = S.toFixed(2);
     populateAsstIncome(S);
 }
 
@@ -76,6 +71,7 @@ function populateAsstIncome(income) {
 
 function calculateRent() {
     R = r * d * w * s;
+    R = R.toFixed(2);
     populateRent(R);
 }
 
@@ -84,7 +80,7 @@ function populateRent(rent) {
 }
 
 var f = {
-    a: 800,
+    a: 800.00,
     b: 0,
     c: 0,
     d: 0
@@ -94,9 +90,13 @@ function calculateFees() {
     f.a = $("#base-rate").val();
     var c = $("#percent-discount").val() * 0.01;
     f.b = f.a * (1 - c);
+    f.b = f.b.toFixed(2);
     f.c = 1.5 * f.a;
+    f.c = f.c.toFixed(2);
     f.d = 1.5 * f.a * (1 - c);
+    f.d = f.d.toFixed(2);
     F = (f.a * n.a + f.b * n.b + f.c * n.c + f.d * n.d) * parseInt(s);
+    F = F.toFixed(2);
     populateTwodayDiscount(f.b);
     populateThreedayReg(f.c);
     populateThreedayDiscount(f.d);
@@ -120,13 +120,18 @@ function populateFeeTotal(fee) {
 }
 
 function calculateAnnaIncome() {
-    A = F - (S + R + M);
+    A = parseInt(F) - (parseInt(S) + parseInt(R) + parseInt(M));
+    A = A.toFixed(2);
     populateAnnaIncome(A);
 }
 
 function populateAnnaIncome(income) {
     $("#anna-income").text(income);
 }
+
+/*function setTwoDecimals(number) {
+    number = parseInt(number).toFixed(2);
+}*/
 
 function update() {
     populateStudentNos();
