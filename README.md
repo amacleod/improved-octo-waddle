@@ -5,10 +5,13 @@ Calculate revenue by headcount and discounted rates.
 
 Go to https://amacleod.github.io/improved-octo-waddle/ to use the calculator.
 
-TODO / Wishlist
----------------
+Wish List
+---------
 
-* Slider inputs for headcount portions.
+See https://github.com/amacleod/improved-octo-waddle/issues for TODO items.
+
+*Wish List*:
+
 * Try different Javascript frameworks:
   * [AngularJS][angular]
   * [React][react]
