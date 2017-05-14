@@ -19,6 +19,18 @@ function populateStudentNos() {
     n.d = $("#headcount-discount-threeday").val();
     N = parseInt(n.a) + parseInt(n.b) + parseInt(n.c) + parseInt(n.d);
     populateStudentTotal(N);
+    adjustStudentBar(N, n.a, n.b, n.c, n.d);
+}
+
+function adjustStudentBar(total, a, b, c, d) {
+    var percent_a = a / total * 100;
+    var percent_b = b / total * 100;
+    var percent_c = c / total * 100;
+    var percent_d = d / total * 100;
+    $("#count-bar-twoday").css("width", percent_a + "%");
+    $("#count-bar-threeday").css("width", percent_b + "%");
+    $("#count-bar-discount-twoday").css("width", percent_c + "%");
+    $("#count-bar-discount-threeday").css("width", percent_d + "%");
 }
 
 function populateStudentTotal(number) {
