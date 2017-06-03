@@ -132,10 +132,6 @@ function populateFeeTotal(fee) {
 }
 
 function calculateAnnaIncome() {
-	console.log("Fees are: " + Fees);
-	console.log("AssistantPay is: " + AssistantPay);
-	console.log("TotalRent is: " + TotalRent);
-	console.log("MaterialsCost is: " + MaterialsCost);
 	var revenue = Number(Fees);
 	var costs = Number(AssistantPay) + Number(TotalRent) + Number(MaterialsCost);
 	Income = revenue - costs;
