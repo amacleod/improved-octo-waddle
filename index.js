@@ -3,7 +3,7 @@
 //See descriptions of variables at the bottom of this file.
 
 var StudentCount, MaterialsCost, AssistantPay, TotalRent, Fees, Income;
-var rumpelstiltskin, d, w, s, h, a;
+var dailyRent, d, w, s, h, a;
 
 var n = {
     a: 5,
@@ -58,7 +58,7 @@ function populateMaterialsCost(cost) {
 }
 
 function populateOtherVars() {
-    r = $("#daily-rent").val();
+    dailyRent = $("#daily-rent").val();
     d = (n.c + n.d > 0) ? 3 : 2;
     populateClassDays(d);
     w = $("#weeks-session").val();
@@ -82,7 +82,7 @@ function populateAsstIncome(income) {
 }
 
 function calculateRent() {
-    TotalRent = rumpelstiltskin * d * w * s;
+    TotalRent = dailyRent * d * w * s;
     TotalRent = TotalRent.toFixed(2);
     populateRent(TotalRent);
 }
