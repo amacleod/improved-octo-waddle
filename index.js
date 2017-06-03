@@ -3,7 +3,7 @@
 //See descriptions of variables at the bottom of this file.
 
 var StudentCount, MaterialsCost, AssistantPay, TotalRent, Fees, Income;
-var r, d, w, s, h, a;
+var rumpelstiltskin, d, w, s, h, a;
 
 var n = {
     a: 5,
@@ -82,7 +82,7 @@ function populateAsstIncome(income) {
 }
 
 function calculateRent() {
-    TotalRent = r * d * w * s;
+    TotalRent = rumpelstiltskin * d * w * s;
     TotalRent = TotalRent.toFixed(2);
     populateRent(TotalRent);
 }
