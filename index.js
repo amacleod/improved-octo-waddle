@@ -132,9 +132,9 @@ function populateFeeTotal(fee) {
 }
 
 function calculateAnnaIncome() {
-	var revenue = Number(Fees);
-	var costs = Number(AssistantPay) + Number(TotalRent) + Number(MaterialsCost);
-	Income = revenue - costs;
+    var revenue = Number(Fees);
+    var costs = Number(AssistantPay) + Number(TotalRent) + Number(MaterialsCost);
+    Income = revenue - costs;
     Income = Income.toFixed(2);
     populateAnnaIncome(Income);
 }
