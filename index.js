@@ -2,7 +2,7 @@
 
 //See descriptions of variables at the bottom of this file.
 
-var N, M, S, R, F, A;
+var StudentCount, MaterialsCost, AssistantPay, TotalRent, Fees, Income;
 var r, d, w, s, h, a;
 
 var n = {
@@ -17,9 +17,9 @@ function populateStudentNos() {
     n.b = $("#headcount-discount-twoday").val();
     n.c = $("#headcount-threeday").val();
     n.d = $("#headcount-discount-threeday").val();
-    N = parseInt(n.a) + parseInt(n.b) + parseInt(n.c) + parseInt(n.d);
-    populateStudentTotal(N);
-    adjustStudentBar(N, n.a, n.b, n.c, n.d);
+    StudentCount = parseInt(n.a) + parseInt(n.b) + parseInt(n.c) + parseInt(n.d);
+    populateStudentTotal(StudentCount);
+    adjustStudentBar(StudentCount, n.a, n.b, n.c, n.d);
 }
 
 function adjustStudentBar(total, a, b, c, d) {
@@ -48,9 +48,9 @@ function populateMaterials() {
 }
 
 function calculateMaterials() {
-    M = parseInt(m.f) + N * parseInt(m.n);
-    M = M.toFixed(2);
-    populateMaterialsCost(M);
+    MaterialsCost = parseInt(m.f) + StudentCount * parseInt(m.n);
+    MaterialsCost = MaterialsCost.toFixed(2);
+    populateMaterialsCost(MaterialsCost);
 }
 
 function populateMaterialsCost(cost) {
@@ -72,9 +72,9 @@ function populateClassDays(days) {
 }
 
 function calculateAsstIncome() {
-    S = (N >= 8) ? a * h * d * w * s : 0;
-    S = S.toFixed(2);
-    populateAsstIncome(S);
+    AssistantPay = (StudentCount >= 8) ? a * h * d * w * s : 0;
+    AssistantPay = AssistantPay.toFixed(2);
+    populateAsstIncome(AssistantPay);
 }
 
 function populateAsstIncome(income) {
@@ -82,9 +82,9 @@ function populateAsstIncome(income) {
 }
 
 function calculateRent() {
-    R = r * d * w * s;
-    R = R.toFixed(2);
-    populateRent(R);
+    TotalRent = r * d * w * s;
+    TotalRent = TotalRent.toFixed(2);
+    populateRent(TotalRent);
 }
 
 function populateRent(rent) {
@@ -107,12 +107,12 @@ function calculateFees() {
     f.c = f.c.toFixed(2);
     f.d = 1.5 * f.a * (1 - c);
     f.d = f.d.toFixed(2);
-    F = (f.a * n.a + f.b * n.b + f.c * n.c + f.d * n.d) * parseInt(s);
-    F = F.toFixed(2);
+    Fees = (f.a * n.a + f.b * n.b + f.c * n.c + f.d * n.d) * parseInt(s);
+    Fees = Fees.toFixed(2);
     populateTwodayDiscount(f.b);
     populateThreedayReg(f.c);
     populateThreedayDiscount(f.d);
-    populateFeeTotal(F);
+    populateFeeTotal(Fees);
 }
 
 function populateTwodayDiscount(fee) {
@@ -132,9 +132,11 @@ function populateFeeTotal(fee) {
 }
 
 function calculateAnnaIncome() {
-    A = parseInt(F) - (parseInt(S) + parseInt(R) + parseInt(M));
-    A = A.toFixed(2);
-    populateAnnaIncome(A);
+    var revenue = Number(Fees);
+    var costs = Number(AssistantPay) + Number(TotalRent) + Number(MaterialsCost);
+    Income = revenue - costs;
+    Income = Income.toFixed(2);
+    populateAnnaIncome(Income);
 }
 
 function populateAnnaIncome(income) {

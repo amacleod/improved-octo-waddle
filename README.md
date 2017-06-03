@@ -15,6 +15,7 @@ See https://github.com/amacleod/improved-octo-waddle/issues for TODO items.
 * Try different Javascript frameworks:
   * [AngularJS][angular]
   * [React][react]
+* Figure out how best to do branching.
 
 [angular]: https://angular.io/
 [react]: https://facebook.github.io/react/
