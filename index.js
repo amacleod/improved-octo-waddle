@@ -1,25 +1,23 @@
 "use strict";
 
-//See descriptions of variables at the bottom of this file.
-
 var StudentCount, MaterialsCost, AssistantPay, TotalRent, Fees, Income;
-var dailyRent, d, w, s, h, a;
+var dailyRent, classDays, weeksPerSession, sessions, assistantHoursPerDay, assistantHourlyPay;
 
-var n = {
-    a: 5,
-    b: 2,
-    c: 2,
-    d: 2
+var headcount = {
+    twoday: 3,
+    discountTwoday: 0,
+    threeday: 3,
+    discountThreeday: 3
 }
 
 function populateStudentNos() {
-    n.a = $("#headcount-twoday").val();
-    n.b = $("#headcount-discount-twoday").val();
-    n.c = $("#headcount-threeday").val();
-    n.d = $("#headcount-discount-threeday").val();
-    StudentCount = parseInt(n.a) + parseInt(n.b) + parseInt(n.c) + parseInt(n.d);
+    headcount.twoday = $("#headcount-twoday").val();
+    headcount.discountTwoday = $("#headcount-discount-twoday").val();
+    headcount.threeday = $("#headcount-threeday").val();
+    headcount.discountThreeday = $("#headcount-discount-threeday").val();
+    StudentCount = parseInt(headcount.twoday) + parseInt(headcount.discountTwoday) + parseInt(headcount.threeday) + parseInt(headcount.discountThreeday);
     populateStudentTotal(StudentCount);
-    adjustStudentBar(StudentCount, n.a, n.b, n.c, n.d);
+    adjustStudentBar(StudentCount, headcount.twoday, headcount.discountTwoday, headcount.threeday, headcount.discountThreeday);
 }
 
 function adjustStudentBar(total, a, b, c, d) {
@@ -37,18 +35,18 @@ function populateStudentTotal(number) {
     $("#total-students").text(number);
 }
 
-var m = {
-    f: 0,
-    n: 0
+var materials = {
+    fixed: 0,
+    perStudent: 0
 }
 
 function populateMaterials() {
-    m.f = $("#materials-cost-fixed").val();
-    m.n = $("#materials-cost-per").val();
+    materials.fixed = $("#materials-cost-fixed").val();
+    materials.perStudent = $("#materials-cost-per").val();
 }
 
 function calculateMaterials() {
-    MaterialsCost = parseInt(m.f) + StudentCount * parseInt(m.n);
+    MaterialsCost = parseInt(materials.fixed) + StudentCount * parseInt(materials.perStudent);
     MaterialsCost = MaterialsCost.toFixed(2);
     populateMaterialsCost(MaterialsCost);
 }
@@ -59,12 +57,12 @@ function populateMaterialsCost(cost) {
 
 function populateOtherVars() {
     dailyRent = $("#daily-rent").val();
-    d = (n.c + n.d > 0) ? 3 : 2;
-    populateClassDays(d);
-    w = $("#weeks-session").val();
-    s = $("#sessions").val();
-    h = $("#asst-daily-hrs").val();
-    a = $("#asst-hrly-pay").val();
+    classDays = (headcount.threeday + headcount.discountThreeday > 0) ? 3 : 2;
+    populateClassDays(classDays);
+    weeksPerSession = $("#weeks-session").val();
+    sessions = $("#sessions").val();
+    assistantHoursPerDay = $("#asst-daily-hrs").val();
+    assistantHourlyPay = $("#asst-hrly-pay").val();
 }
 
 function populateClassDays(days) {
@@ -72,7 +70,7 @@ function populateClassDays(days) {
 }
 
 function calculateAsstIncome() {
-    AssistantPay = (StudentCount >= 8) ? a * h * d * w * s : 0;
+    AssistantPay = (StudentCount >= 8) ? assistantHourlyPay * assistantHoursPerDay * classDays * weeksPerSession * sessions : 0;
     AssistantPay = AssistantPay.toFixed(2);
     populateAsstIncome(AssistantPay);
 }
@@ -82,7 +80,7 @@ function populateAsstIncome(income) {
 }
 
 function calculateRent() {
-    TotalRent = dailyRent * d * w * s;
+    TotalRent = dailyRent * classDays * weeksPerSession * sessions;
     TotalRent = TotalRent.toFixed(2);
     populateRent(TotalRent);
 }
@@ -91,27 +89,27 @@ function populateRent(rent) {
     $("#total-rent").text(rent);
 }
 
-var f = {
-    a: 800.00,
-    b: 0,
-    c: 0,
-    d: 0
+var fees = {
+    twoday: 800.00,
+    discountTwoday: 0,
+    threeday: 0,
+    discountThreeday: 0
 }
 
 function calculateFees() {
-    f.a = $("#base-rate").val();
+    fees.twoday = $("#base-rate").val();
     var c = $("#percent-discount").val() * 0.01;
-    f.b = f.a * (1 - c);
-    f.b = f.b.toFixed(2);
-    f.c = 1.5 * f.a;
-    f.c = f.c.toFixed(2);
-    f.d = 1.5 * f.a * (1 - c);
-    f.d = f.d.toFixed(2);
-    Fees = (f.a * n.a + f.b * n.b + f.c * n.c + f.d * n.d) * parseInt(s);
+    fees.discountTwoday = fees.twoday * (1 - c);
+    fees.discountTwoday = fees.discountTwoday.toFixed(2);
+    fees.threeday = 1.5 * fees.twoday;
+    fees.threeday = fees.threeday.toFixed(2);
+    fees.discountThreeday = 1.5 * f.twoday * (1 - threeday);
+    fees.discountThreeday = fees.discountThreeday.toFixed(2);
+    Fees = (fees.twoday * headcount.twoday + fees.discountTwoday * headcount.discountTwoday + fees.threeday * headcount.threeday + fees.discountThreeday * headcount.discountThreeday) * Number(sessions);
     Fees = Fees.toFixed(2);
-    populateTwodayDiscount(f.b);
-    populateThreedayReg(f.c);
-    populateThreedayDiscount(f.d);
+    populateTwodayDiscount(fees.discountTwoday);
+    populateThreedayReg(fees.threeday);
+    populateThreedayDiscount(fees.discountThreeday);
     populateFeeTotal(Fees);
 }
 
@@ -143,10 +141,6 @@ function populateAnnaIncome(income) {
     $("#anna-income").text(income);
 }
 
-/*function setTwoDecimals(number) {
-    number = parseInt(number).toFixed(2);
-}*/
-
 function update() {
     populateStudentNos();
     populateMaterials();
@@ -160,37 +154,3 @@ function update() {
 
 // Do it once at startup.
 update();
-
-
-/*
-Defining Variables
-_____
-
-A = Anna's income
-S = assistant's income
-R = total rent costs
-M = total materials costs
-F = total fees collected from students
-
-m.f = fixed materials cost
-m.n = per capita materials cost
-
-n.a = headcount of full-rate two-day students
-n.b = headcount of discount two-day students
-n.c = headcount of full-rate three-day students
-n.d = headcount of discount three-day students
-N = total student headcount
-
-f.a = fee for full-rate two-day students = base fee
-f.b = fee for discounted two-day students
-f.c = fee for full-rate three-day students
-f.d = fee for discount three-day students
-
-r = daily rent
-d = number of class days per week
-w = number of weeks per session
-s = number of sessions to calculate for
-h = number of hours assistant works per day
-a = assistant's hourly pay
-c = percent discount * 0.01
-*/
